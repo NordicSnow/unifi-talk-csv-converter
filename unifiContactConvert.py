@@ -9,7 +9,9 @@ def removeCharacters(inputNumber):
     outputNumber = re.sub(r"[^0-9]+", "", inputNumber) #removes all non-numbers and whitespace
     if outputNumber == "":
         return ""
-    if outputNumber[0] == '1':
+    
+    #removes US country code
+    if outputNumber[0] == '1' and len(outputNumber > 10):
         outputNumber = outputNumber[1:]
     elif outputNumber[0:2] == "+1":
         outputNumber = outputNumber[2:]
@@ -48,7 +50,7 @@ for i in range(len(data)):
     if phoneNum == "":
         print('A contact "' + firstName + ' ' + lastName + " " + '" is missing a phone number and therefore had to be skipped.')
         continue
-    
+
     #Adds current item to list
     contactList.append([firstName, lastName, phoneNum])
 
